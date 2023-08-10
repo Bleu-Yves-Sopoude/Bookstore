@@ -4,7 +4,7 @@ import axios from "axios";
 // const appId = 9aaWCD6PToeD6wXGBluj
 const url =
   "https://us-central1-bookstore-api-e63c8.cloudfunctions.net/bookstoreApi/apps/9aaWCD6PToeD6wXGBluj/books";
-export const getBooks = createAsyncThunk(
+export const fetchBooks = createAsyncThunk(
   "books/fetchBooks",
   async (_, thunkAPI) => {
     try {
@@ -22,7 +22,7 @@ export const addBook = createAsyncThunk(
   async (newBook, thunkAPI) => {
     try {
       const response = await axios.post(url, newBook);
-      thunkAPI.dispatch(getBooks());
+      thunkAPI.dispatch(fetchBooks());
       return response.data;
     } catch (error) {
       const errorMsg = `${error.code}: ${error.message}`;
@@ -38,7 +38,7 @@ export const removeBook = createAsyncThunk(
     const removeURL = `https://us-central1-bookstore-api-e63c8.cloudfunctions.net/bookstoreApi/apps/9aaWCD6PToeD6wXGBluj/books/${endPoint}`;
     try {
       const response = await axios.delete(removeURL);
-      thunkAPI.dispatch(getBooks());
+      thunkAPI.dispatch(fetchBooks());
       return response.data;
     } catch (error) {
       const errorMsg = `${error.code}: ${error.message}`;
@@ -61,14 +61,14 @@ const bookSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(getBooks.pending, (state) => {
+      .addCase(fetchBooks.pending, (state) => {
         state.isLoading = true;
       })
-      .addCase(getBooks.fulfilled, (state, action) => {
+      .addCase(fetchBooks.fulfilled, (state, action) => {
         state.isLoading = false;
         state.bookArray = action.payload;
       })
-      .addCase(getBooks.rejected, (state, action) => {
+      .addCase(fetchBooks.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.payload;
       })

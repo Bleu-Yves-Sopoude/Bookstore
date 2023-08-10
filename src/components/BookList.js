@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import Book from './Book';
-import { getBooks } from '../redux/books/bookSlice';
+import { fetchBooks } from '../redux/books/bookSlice';
 
 const BookList = () => {
   const { bookArray, isLoading, error } = useSelector((store) => store.book);
@@ -9,7 +9,7 @@ const BookList = () => {
   const keys = Object.keys(bookArray);
 
   useEffect(() => {
-    dispatch(getBooks());
+    dispatch(fetchBooks());
   }, []);
 
   if (isLoading) {
