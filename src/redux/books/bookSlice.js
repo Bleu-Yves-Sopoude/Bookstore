@@ -9,12 +9,19 @@ export const BookSlice = createSlice({
   initialState,
   reducers: {
     addBook: (state, action) => {
-      state.books.push(action.payload);
+        state.books = [
+          ...state.books,
+          {
+            id: Math.floor(Math.random() * 100),
+            title: action.payload.title,
+            author: action.payload.author,
+          },
+        ]
+      },
+      removeBook: (state, action) => {
+        state.books = state.books.filter((book) => book.id !== action.id)
+      },
     },
-    removeBook: (state, action) => {
-      state.books = state.books.filter((book) => book.id !== action.payload);
-    },
-  },
 });
 
 export const { addBook, removeBook } = BookSlice.actions;
