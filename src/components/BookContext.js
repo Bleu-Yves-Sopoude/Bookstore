@@ -4,7 +4,7 @@ import list from './list';
 
 const BookContext = React.createContext();
 
-export const useTheme = () => useContext(BookContext);
+export const useBookContext = () => useContext(BookContext);
 
 const BookProvider = ({ children }) => {
   const [bookCollection, setBookCollection] = useState(list);
