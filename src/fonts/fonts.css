@@ -76,6 +76,8 @@
   line-height: normal;
   letter-spacing: normal;
   color: #0290ff;
+  padding-right: 70px;
+  
 }
 
 .Text-Style-5 {
@@ -130,7 +132,8 @@
   font-style: normal;
   line-height: normal;
   letter-spacing: normal;
-  color: #121212;
+  color: #888;
+  margin-bottom: 10%;
 }
 
 .Text-Style-2 {
