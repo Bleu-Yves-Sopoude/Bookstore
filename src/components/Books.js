@@ -4,11 +4,12 @@ import BookProvider from './BookContext';
 
 const Books = () => (
   <>
+    <section className="content">
     <BookProvider>
-      <h1>Books To Read</h1>
       <BookList />
       <BookForm />
     </BookProvider>
+  </section>
   </>
 );
 export default Books;
